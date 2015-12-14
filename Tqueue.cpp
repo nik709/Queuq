@@ -6,5 +6,5 @@ void main()
 	queue.Push(5);
 	Tqueue <int> q(queue);
 	cout << q.Top() << '\n';
-	int elem = q.Pop();
+	int el = q.Pop();
 }

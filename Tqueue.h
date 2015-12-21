@@ -88,7 +88,7 @@ public:
 		else
 		{
 			out << "Очередь: ";
-			for (int i = q.begin; i <= q.end; i++)
+			for (int i = 0; i < q.len; i++)
 				out << q.mas[i] << " ";
 			out << '\n';
 			return out;

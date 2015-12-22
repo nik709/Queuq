@@ -1,38 +1,63 @@
 #include "Tqueue.h"
+#include <cstdlib>
 void main()
 {
 	setlocale(LC_ALL, "Russian");
 	int comand;
 	int len_q;
-	double Pel;
 	cout << "Введите длину очереди: ";
 	cin >> len_q;
 	cout << endl;
 	Tqueue <double> qu(len_q);
-	for (int i = 0; i < len_q; i++)
-		qu.Push((rand() % 100));
-	for (;;)
+	double p,p1;
+	double q,q1;
+	cout<<"Vvedite p: ";
+	cin>>p;
+	cout<<"Vvedite q: ";
+	cin>>q;
+	cout<<endl<<"Comands:"<<endl;
+	cout<<"1 - test"<<endl;
+	cout<<"2 - posmotret' na ochered'"<<endl;
+	cout<<"3 - exit"<<endl;
+	for(;;)
 	{
-		cout << "Введите вероятность поступления новой задачи: ";
-		cin >> Pel;
-		if (Pel >= qu.Top())
+		cout<<endl<<"Vvedite comandu: ";
+		cin>>comand;
+		switch (comand)
 		{
-			cout << "Задача " << qu.Pop() << " выполнена" << endl;
-			cout << "Задача " << Pel << " послупила" << endl << endl;
-			qu.Push(Pel);
+		case 1:
+			{
+				for (int i=0; i<10; i++)
+				{
+					p1=rand()%100;
+					p1/=100;
+					if (qu.IsFull())
+						cout<<"FULL QUEUE"<<endl;
+					else if (p1<p)
+					{
+						qu.Push(p1);
+						cout<<"Dobavili zadachu "<<p1<<endl;
+					}
+					q1=rand()%100;
+					q1/=100;
+					if (qu.IsEmpty())
+						cout<<"EMPTY QUEUE"<<endl;
+					else if (q1<q)
+					{
+						cout<<"Vipolnili zadachu ";
+						cout<<qu.Pop();
+						cout<<endl;
+					}
+				}
+				break;
+			}
+		case 2:
+			{
+				cout<<qu;
+				break;
+			}
+		case 3:
+			exit(1);
 		}
-		else if (Pel < qu.Top())
-			cout << "Очередь переполнена" << endl << endl;
-		cout << "Введите 1, если хотите посмотреть на очередь" << endl;
-		cout << "Введите 2, если хотите продолжить работу программы" << endl;
-		cout << "Введите 3, если хотите выйти изпрограммы" << endl << endl;
-		cout << "Введите команду: ";
-		cin >> comand;
-		if (comand == 1)
-			cout << qu;
-		else if (comand == 2);
-		else if (comand == 3)
-			break;
-		else cout << "Неверный ввод";
 	}
 }
